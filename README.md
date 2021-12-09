@@ -1,12 +1,12 @@
-# Bridge Thryve <> Pryv
+# Thryve integration for Pryv
 
-Exploratory work to bridge Pryv API & Thryve API.
+Exploratory work to connect Pryv API & Thryve API.
 
 ## How it works.
 
 ```
 
-Thryve API ---> Bridge ---> Pryv API
+Thryve API ---> integration service ---> Pryv API
 
 ```
 
@@ -169,7 +169,7 @@ And the necessary stream structure will be
 
 Some measure send by Thryve need to be paired. For example the Geolocation which is sent in two separated items.
 
-The bridge has a specific declaration process to handle them in the definition.js file
+The service has a specific declaration process to handle them in the definition.js file
 
 ```javascript
   ["1401;GeolocationLatitude;Intraday;ZZZ;LONG;combine:Geolocation:position/wgs84:latitude",
@@ -206,9 +206,9 @@ Goal, store in "Dest" data from Thryve with the following objectives:
 
 ### Current implemention. 
 
-A bridge service (Bridge) between Thryve & Pryv
+An integration (formerly bridge) service between Thryve & Pryv
 
-1. When adding a new user (couple ThryveToken / Dest user ID). The Bridge fetches all data from very far in the past to now for all source.
+1. When adding a new user (couple ThryveToken / Dest user ID), the service fetches all data from very far in the past to now for all source.
 2. The service exposes a /trigger route that fetches exactly the segment of data `from`, `to` and `source` received.
 
 ### Questions for further implementations
@@ -227,9 +227,9 @@ Questions: 
 - Is there a list of DataSources or DataSource/EventTypes that are not covered by EventTrigger? 
 This will make it easier to implement instead of having some "discovery method". 
 
-2. Fact: New measures can be "inserted" at any moment between (in a time scope) measures that have already been fetched by the bridge. There is no synchronization mechanism on Thryve, this means that the only way to detect if a measure has already been synchronized is to look for existing identical measure (type, time, streamId). This also applies to modification of measure. 
+2. Fact: New measures can be "inserted" at any moment between (in a time scope) measures that have already been fetched by the service. There is no synchronization mechanism on Thryve, this means that the only way to detect if a measure has already been synchronized is to look for existing identical measure (type, time, streamId). This also applies to modification of measure. 
 
-In the scope of this implementation in would mean that the Bridge should have access to all previously fetched measure at every moment. As this is not possible for compliance and technical reasons, we have to limit the synchronization capabilities of the Bridge. 
+In the scope of this implementation in would mean that the service should have access to all previously fetched measure at every moment. As this is not possible for compliance and technical reasons, we have to limit the synchronization capabilities of the service. 
 
 If Thryve in the future implements some synchronization capabilities such as:
 
