@@ -250,3 +250,8 @@ Copyright (C) 2019 Pierre-Mikael Legris - All Rights Reserved.  
 You may use, distribute and modify this code under the terms of the GL3 license.
 You should have received a copy of the GPL3 license with these files.
 
+
+
+## License
+
+[BSD-3-Clause](LICENSE)

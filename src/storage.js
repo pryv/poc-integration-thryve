@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright (C) Pryv https://pryv.com
+ * This file is part of Pryv.io and released under BSD-Clause-3 License
+ * Refer to LICENSE file
+ */
 const config = require('./config.js');
 const db = require('better-sqlite3')(config.get('database:path'), { verbose: console.log });
 
